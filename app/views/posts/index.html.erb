@@ -11,10 +11,14 @@
     <span>
       <small class="post-date"><%= post.created_at %></small>
     </span>
+    <% if post.user_id == current_user.id %>
     <div class="edit-delete-container">
       <%= link_to "編集", edit_post_path(post), class: "link-edit-button" %>
       <%= button_to "削除", post_path(post), method: :delete, class: "link-delete-button"%>
-    </div>
+      </div>
+    <% end %>
+
   </li>
-  <% end %>
+<% end %>
+
 </ul>
