@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    flash[:success] = session.delete(:welcome_message)
   end
 
   def create

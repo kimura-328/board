@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   def index
     @posts = Post.all
+    flash.keep(:delete)
   end
 
   def show
@@ -29,7 +30,9 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-          redirect_to posts_path
+      flash[:notice] = "更新しました"
+      session[:updated_post_id] = @post.id
+      redirect_to posts_path
     else
       render :edit
     end
@@ -37,10 +40,17 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path
+    if params[:confirm] == 'true'
+      @post.destroy
+      redirect_to deleted_posts_path
+    else
+      render :confirm_destroy
+    end
   end
-  
+
+  def deleted
+    flash[:delete] = "削除が完了しました。3秒後に掲示板トップに戻ります。"
+  end
   
 
   def logged_in_user

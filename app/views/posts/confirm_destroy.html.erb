@@ -1,0 +1,11 @@
+<h1 class="center-text">削除確認</h1>
+<div class="form-container">
+  <p style="color:red;">以下の投稿を削除します。</p>
+  <p>投稿ID:<%= @post.id %></p>
+  <p>タイトル:<%= @post.title %></p>
+  <p>内容:<%= @post.content %></p>
+  <div class="button-group">
+    <%= button_to "削除", {action: :destroy, confirm: 'true'}, method: :delete, class: "delete-confirmation-button" %>
+    <%= link_to "キャンセル", posts_path ,class: "cancel-button"%>
+  </div>
+</div>

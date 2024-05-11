@@ -177,3 +177,51 @@ ul li p {
   padding: 10px 20px;
   cursor: pointer;
 }
+
+.delete-confirmation-button,
+.cancel-button {
+  display: inline-block;
+  font-size: 15px;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.delete-confirmation-button {
+  background-color: #d02d14ba;
+  color: #fff;
+}
+
+.cancel-button {
+  background-color: #14d046ba;
+  color: #fff;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.post-container {
+  position: relative;
+}
+
+.flash-notice {
+  color: green;
+  border: 1px solid green;
+  padding: 3px;
+  font-size: small;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+}
+
+.alert-success {
+  text-align: center;
+  color: green;
+}
