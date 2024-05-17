@@ -6,6 +6,6 @@
   <p>内容:<%= @post.content %></p>
   <div class="button-group">
     <%= button_to "削除", {action: :destroy, confirm: 'true'}, method: :delete, class: "delete-confirmation-button" %>
-    <%= link_to "キャンセル", posts_path ,class: "cancel-button"%>
+    <%= link_to "キャンセル", user_posts_path(current_user) ,class: "cancel-button"%>
   </div>
 </div>

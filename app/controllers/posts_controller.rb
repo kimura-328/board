@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to posts_path
+      redirect_to user_posts_path(current_user)
     else
       render :new
     end
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       flash[:notice] = "更新しました"
       session[:updated_post_id] = @post.id
-      redirect_to posts_path
+      redirect_to user_posts_path(current_user)
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if params[:confirm] == 'true'
       @post.destroy
-      redirect_to deleted_posts_path
+      redirect_to deleted_user_posts_path(current_user)
     else
       render :confirm_destroy
     end
@@ -68,6 +68,6 @@ class PostsController < ApplicationController
 
   def correct_user
     @post = current_user.posts.find_by(id: params[:id])
-    redirect_to posts_path if @post.nil?
+    redirect_to user_posts_path(current_user) if @post.nil?
   end
 end

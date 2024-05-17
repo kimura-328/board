@@ -1,7 +1,11 @@
 <h1>投稿一覧</h1>
-
+<% if flash[:success] %>
+  <div class="alert alert-success">
+    <%= flash[:success] %>
+  </div>
+<% end %>
 <div class="center-text">
-  <%= link_to "新しい投稿", new_post_path, class: "link-button" %></div>
+  <%= link_to "新しい投稿", new_user_post_path(current_user), class: "link-button" %></div>
 
 
 <ul>
@@ -14,9 +18,8 @@
     </span>
     <% if post.user_id == current_user.id %>
     <div class="edit-delete-container">
-      <%= link_to "編集", edit_post_path(post), class: "link-edit-button" %>
-      <%= button_to "削除", post_path(post, confirm: 'false'), method: :delete, class: "link-delete-button", data: { turbo: "false" } %>
-      <% if session[:updated_post_id] == post.id %>
+      <%= link_to "編集", edit_user_post_path(current_user, post), class: "link-edit-button" %>
+      <%= button_to "削除", user_post_path(current_user, post, confirm: 'false'), method: :delete, class: "link-delete-button", data: { turbo: "false" } %>      <% if session[:updated_post_id] == post.id %>
         <div class="flash-notice">
           <%= flash[:notice] %>
         </div>

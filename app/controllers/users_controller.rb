@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:welcome_message] = "Welcome to the Sample App!"
-      redirect_to login_path
+      redirect_to user_posts_path(@user)
     else
       render 'new', status: :unprocessable_entity
     end
