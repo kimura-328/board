@@ -11,7 +11,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:welcome_message] = "Welcome to the Sample App!"
+      log_out if logged_in? # 追加
+      log_in @user # 追加
+      flash[:success] = "Welcome to the Sample App!" # この行を追加
       redirect_to user_posts_path(@user)
     else
       render 'new', status: :unprocessable_entity
